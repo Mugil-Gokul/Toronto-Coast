@@ -1,17 +1,39 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
-
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
 import Logo from "../assets/TCT-Logo.png";
 
-const quickLinks = ["Home", "About", "Contact Us"];
+const quickLinks = [
+  {
+    title: "Home",
+    link: "/",
+  },
+  {
+    title: "About",
+    link: "/about",
+  },
+  {
+    title: "Contact Us",
+    link: "/contact",
+  },
+];
 
 const services = [
-  "Full Truckload Shipping",
-  "Less-Than-Truckload Freight",
-  "Specialized/Dedicated Contract Services",
+  {
+    title: "Full Truckload Shipping",
+    link: "/services/full-truckload-shipping",
+  },
+  {
+    title: "Less-Than-Truckload Freight",
+    link: "/services/less-than-truckload-freight",
+  },
+  {
+    title: "Specialized/Dedicated Contract Services",
+    link: "/services/dedicated-contract-services",
+  },
 ];
 
 const Footer = () => {
@@ -19,9 +41,9 @@ const Footer = () => {
     <footer className="relative overflow-hidden bg-slate-950 text-white">
       {/* Background Glow */}
       <div className="absolute -left-32 top-0 h-96 w-96 rounded-full bg-red-600/10 blur-[180px]" />
-      <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-blue-700/10 blur-[180px]" />
+      <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-blue-700/10 blur-[180px]" />
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-8">
+      <div className="relative mx-auto max-w-7xl px-6 pb-8 pt-20">
         <div className="grid gap-12 lg:grid-cols-4">
           {/* Company */}
           <motion.div
@@ -30,11 +52,13 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <img
-  src={Logo}
-  alt="Logo"
-  className="h-20 w-auto brightness-0 invert"
-/>
+            <Link to="/">
+              <img
+                src={Logo}
+                alt="Toronto Coast Trucking"
+                className="h-20 w-auto brightness-0 invert"
+              />
+            </Link>
 
             <p className="mt-6 leading-8 text-slate-400">
               Logistics delivers dependable, on-time transportation solutions
@@ -62,13 +86,10 @@ const Footer = () => {
                 <motion.a
                   key={index}
                   href={item.href}
-                  whileHover={{
-                    y: -5,
-                    scale: 1.1,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -5, scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                   className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xl text-white transition-all duration-300 hover:border-red-500 hover:bg-gradient-to-r hover:from-red-600 hover:to-blue-700"
                 >
                   {item.icon}
@@ -87,10 +108,10 @@ const Footer = () => {
             <h3 className="mb-6 text-2xl font-bold">Quick Links</h3>
 
             <div className="space-y-4">
-              {quickLinks.map((link, index) => (
-                <a
+              {quickLinks.map((item, index) => (
+                <Link
                   key={index}
-                  href="#"
+                  to={item.link}
                   className="group flex items-center gap-2 text-slate-400 transition hover:text-white"
                 >
                   <ArrowUpRight
@@ -98,8 +119,8 @@ const Footer = () => {
                     className="transition-transform duration-300 group-hover:translate-x-1"
                   />
 
-                  {link}
-                </a>
+                  {item.title}
+                </Link>
               ))}
             </div>
           </motion.div>
@@ -115,9 +136,9 @@ const Footer = () => {
 
             <div className="space-y-4">
               {services.map((service, index) => (
-                <a
+                <Link
                   key={index}
-                  href="#"
+                  to={service.link}
                   className="group flex items-start gap-2 text-slate-400 transition hover:text-white"
                 >
                   <ArrowUpRight
@@ -125,8 +146,8 @@ const Footer = () => {
                     className="mt-1 transition-transform duration-300 group-hover:translate-x-1"
                   />
 
-                  <span>{service}</span>
-                </a>
+                  <span>{service.title}</span>
+                </Link>
               ))}
             </div>
           </motion.div>
@@ -142,12 +163,13 @@ const Footer = () => {
 
             <div className="space-y-6">
               <div className="flex gap-4">
-                <div className="rounded-xl  p-3">
+                <div className="p-3">
                   <Phone size={18} />
                 </div>
 
                 <div>
                   <p className="text-slate-400">Phone</p>
+
                   <a
                     href="tel:+19052264040"
                     className="transition hover:text-red-400"
@@ -158,12 +180,13 @@ const Footer = () => {
               </div>
 
               <div className="flex gap-4">
-                <div className="rounded-xl p-3">
+                <div className="p-3">
                   <Mail size={18} />
                 </div>
 
                 <div>
                   <p className="text-slate-400">Email</p>
+
                   <a
                     href="mailto:dispatch@torontocoast.com"
                     className="transition hover:text-blue-400"
@@ -174,7 +197,7 @@ const Footer = () => {
               </div>
 
               <div className="flex gap-4">
-                <div className="rounded-xl p-3">
+                <div className="p-3">
                   <MapPin size={18} />
                 </div>
 
@@ -203,13 +226,13 @@ const Footer = () => {
           </p>
 
           <div className="flex gap-6">
-            <a href="#" className="transition hover:text-white">
+            <Link to="#" className="transition hover:text-white">
               Privacy Policy
-            </a>
+            </Link>
 
-            <a href="#" className="transition hover:text-white">
+            <Link to="#" className="transition hover:text-white">
               Terms & Conditions
-            </a>
+            </Link>
           </div>
         </div>
       </div>

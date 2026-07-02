@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
@@ -8,21 +9,24 @@ import {
   Package,
   ShieldCheck,
 } from "lucide-react";
-
 import Logo from "../assets/TCT-Logo.png";
+
 
 const services = [
   {
     title: "Full Truckload Shipping",
     icon: Truck,
+    link: "/services/full-truckload-shipping",
   },
   {
     title: "Less-Than-Truckload Freight",
     icon: Package,
+    link: "/services/less-than-truckload-freight",
   },
   {
     title: "Dedicated Contract Services",
     icon: ShieldCheck,
+    link: "/services/dedicated-contract-services",
   },
 ];
 
@@ -43,14 +47,16 @@ export default function Navbar() {
     };
   }, []);
 
-  const navLinkClass = `
-    font-medium transition-all duration-300
-    ${
+  const navLink = ({ isActive }) =>
+    `font-medium transition-all duration-300 ${
       scrolled
-        ? "text-slate-700 hover:text-red-600"
-        : "text-white hover:text-red-400"
-    }
-  `;
+        ? isActive
+          ? "text-red-600"
+          : "text-slate-700 hover:text-red-600"
+        : isActive
+          ? "text-red-400"
+          : "text-white hover:text-red-400"
+    }`;
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full">
@@ -71,23 +77,23 @@ export default function Navbar() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           {/* Logo */}
-          <a href="/" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <img
               src={Logo}
               alt="Toronto Coast Trucking"
               className="h-16 w-auto"
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center gap-10 lg:flex">
-            <a href="/" className={navLinkClass}>
+            <NavLink to="/" end className={navLink}>
               Home
-            </a>
+            </NavLink>
 
-            <a href="/about" className={navLinkClass}>
+            <NavLink to="/about" className={navLink}>
               About Us
-            </a>
+            </NavLink>
 
             {/* Services Dropdown */}
             <div
@@ -95,12 +101,19 @@ export default function Navbar() {
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
             >
-              <button
-                className={`flex items-center gap-2 font-medium transition-all duration-300 ${
-                  scrolled
-                    ? "text-slate-700 hover:text-red-600"
-                    : "text-white hover:text-red-400"
-                }`}
+              <NavLink
+                to="/services"
+                className={({ isActive }) =>
+                  `flex items-center gap-2 font-medium transition-all duration-300 ${
+                    scrolled
+                      ? isActive
+                        ? "text-red-600"
+                        : "text-slate-700 hover:text-red-600"
+                      : isActive
+                        ? "text-red-400"
+                        : "text-white hover:text-red-400"
+                  }`
+                }
               >
                 Services
                 <ChevronDown
@@ -109,7 +122,7 @@ export default function Navbar() {
                     servicesOpen ? "rotate-180" : ""
                   }`}
                 />
-              </button>
+              </NavLink>
 
               <AnimatePresence>
                 {servicesOpen && (
@@ -124,22 +137,23 @@ export default function Navbar() {
                       const Icon = service.icon;
 
                       return (
-                        <a
+                        <NavLink
                           key={index}
-                          href="#"
-                          className="flex items-center gap-4 border-b border-slate-100 px-5 py-4 transition hover:bg-slate-50"
+                          to={service.link}
+                          className={({ isActive }) =>
+                            `flex items-center gap-4 border-b border-slate-100 px-5 py-4 transition ${
+                              isActive ? "bg-red-50" : "hover:bg-slate-50"
+                            }`
+                          }
                         >
                           <div className="rounded-xl bg-red-50 p-3">
-                            <Icon
-                              size={20}
-                              className="text-red-600"
-                            />
+                            <Icon size={20} className="text-red-600" />
                           </div>
 
                           <span className="font-medium text-slate-700">
                             {service.title}
                           </span>
-                        </a>
+                        </NavLink>
                       );
                     })}
                   </motion.div>
@@ -147,21 +161,21 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
 
-            <a href="/contact" className={navLinkClass}>
+            <NavLink to="/contact" className={navLink}>
               Contact Us
-            </a>
+            </NavLink>
           </nav>
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <motion.a
-              href="/careers"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="rounded-full bg-gradient-to-r from-red-600 to-blue-700 px-6 py-3 font-semibold text-white shadow-lg"
-            >
-              Apply for Job
-            </motion.a>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                to="/careers"
+                className="rounded-full bg-gradient-to-r from-red-600 to-blue-700 px-6 py-3 font-semibold text-white shadow-lg"
+              >
+                Apply for Job
+              </Link>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -206,19 +220,33 @@ export default function Navbar() {
               </div>
 
               <div className="space-y-2 p-5">
-                <a
-                  href="/"
-                  className="block rounded-xl p-3 font-medium text-slate-700 hover:bg-slate-100"
+                <NavLink
+                  to="/"
+                  onClick={() => setMobileOpen(false)}
+                  className={({ isActive }) =>
+                    `block rounded-xl p-3 font-medium ${
+                      isActive
+                        ? "bg-red-50 text-red-600"
+                        : "text-slate-700 hover:bg-slate-100"
+                    }`
+                  }
                 >
                   Home
-                </a>
+                </NavLink>
 
-                <a
-                  href="/about"
-                  className="block rounded-xl p-3 font-medium text-slate-700 hover:bg-slate-100"
+                <NavLink
+                  to="/about"
+                  onClick={() => setMobileOpen(false)}
+                  className={({ isActive }) =>
+                    `block rounded-xl p-3 font-medium ${
+                      isActive
+                        ? "bg-red-50 text-red-600"
+                        : "text-slate-700 hover:bg-slate-100"
+                    }`
+                  }
                 >
                   About Us
-                </a>
+                </NavLink>
 
                 <div className="rounded-xl bg-slate-50 p-4">
                   <h4 className="mb-3 font-semibold text-slate-800">
@@ -227,31 +255,47 @@ export default function Navbar() {
 
                   <div className="space-y-3">
                     {services.map((service, index) => (
-                      <a
+                      <NavLink
                         key={index}
-                        href="#"
-                        className="block text-sm text-slate-600 hover:text-red-600"
+                        to={service.link}
+                        onClick={() => setMobileOpen(false)}
+                        className={({ isActive }) =>
+                          `block rounded-lg px-2 py-2 text-sm ${
+                            isActive
+                              ? "text-red-600 font-semibold"
+                              : "text-slate-600 hover:text-red-600"
+                          }`
+                        }
                       >
                         {service.title}
-                      </a>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
 
-                <a
-                  href="/contact"
-                  className="block rounded-xl p-3 font-medium text-slate-700 hover:bg-slate-100"
+                <NavLink
+                  to="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className={({ isActive }) =>
+                    `block rounded-xl p-3 font-medium ${
+                      isActive
+                        ? "bg-red-50 text-red-600"
+                        : "text-slate-700 hover:bg-slate-100"
+                    }`
+                  }
                 >
                   Contact Us
-                </a>
+                </NavLink>
 
-                <motion.a
-                  whileTap={{ scale: 0.95 }}
-                  href="/careers"
-                  className="mt-4 block rounded-xl bg-gradient-to-r from-red-600 to-blue-700 p-4 text-center font-semibold text-white"
-                >
-                  Apply for Job
-                </motion.a>
+                <motion.div whileTap={{ scale: 0.95 }} className="mt-4">
+                  <Link
+                    to="/careers"
+                    onClick={() => setMobileOpen(false)}
+                    className="block rounded-xl bg-gradient-to-r from-red-600 to-blue-700 p-4 text-center font-semibold text-white"
+                  >
+                    Apply for Job
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
           </>
