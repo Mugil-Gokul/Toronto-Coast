@@ -9,6 +9,7 @@ import {
 
 // Replace with your image
 import AboutImage from "../../assets/About.jpg";
+import { Link } from "react-router-dom";
 
 const HomeAbout = () => {
   return (
@@ -84,17 +85,17 @@ const HomeAbout = () => {
 
             <p className="mt-8 text-lg leading-relaxed text-slate-600">
               At Toronto Coast Trucking, we’re more than a transportation
-              company — we’re your logistics partner. With years of
-              industry experience, a dedicated fleet, and a commitment to
-              integrity, we move goods safely, efficiently, and on time.
+              company — we’re your logistics partner. With years of industry
+              experience, a dedicated fleet, and a commitment to integrity, we
+              move goods safely, efficiently, and on time.
             </p>
 
             <p className="mt-5 text-lg leading-relaxed text-slate-600">
               Our mission is to simplify freight management through
               technology-driven solutions, real-time tracking, and 24/7
               communication. Whether it’s a single shipment or ongoing
-              distribution, we handle every mile with care, precision,
-              and professionalism.
+              distribution, we handle every mile with care, precision, and
+              professionalism.
             </p>
 
             {/* FEATURES */}
@@ -105,20 +106,15 @@ const HomeAbout = () => {
                 className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition"
               >
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50">
-                  <ShieldCheck
-                    size={28}
-                    className="text-red-600"
-                  />
+                  <ShieldCheck size={28} className="text-red-600" />
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900">
-                  Safety
-                </h3>
+                <h3 className="text-xl font-bold text-slate-900">Safety</h3>
 
                 <p className="mt-3 text-slate-600">
-                  We take pride in an outstanding DOT safety rating,
-                  ensuring every shipment reaches its destination
-                  securely and on schedule.
+                  We take pride in an outstanding DOT safety rating, ensuring
+                  every shipment reaches its destination securely and on
+                  schedule.
                 </p>
               </motion.div>
 
@@ -128,37 +124,36 @@ const HomeAbout = () => {
                 className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition"
               >
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50">
-                  <MonitorSmartphone
-                    size={28}
-                    className="text-blue-600"
-                  />
+                  <MonitorSmartphone size={28} className="text-blue-600" />
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900">
-                  Technology
-                </h3>
+                <h3 className="text-xl font-bold text-slate-900">Technology</h3>
 
                 <p className="mt-3 text-slate-600">
-                  Experience real-time tracking and complete shipment
-                  visibility so you always know where your freight is and
-                  when it will arrive.
+                  Experience real-time tracking and complete shipment visibility
+                  so you always know where your freight is and when it will
+                  arrive.
                 </p>
               </motion.div>
             </div>
 
             {/* CTA */}
-            <motion.button
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group mt-10 flex items-center gap-3 rounded-full bg-gradient-to-r from-red-600 to-blue-700 px-8 py-4 font-semibold text-white shadow-xl"
+              className="mt-10 inline-block"
             >
-              Learn More
-
-              <ArrowRight
-                size={20}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </motion.button>
+              <Link
+                to="/about"
+                className="group flex items-center gap-3 rounded-full bg-gradient-to-r from-red-600 to-blue-700 px-8 py-4 font-semibold text-white shadow-xl"
+              >
+                Learn More
+                <ArrowRight
+                  size={20}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Truck } from "lucide-react";
 
 import CareerBg from "../../assets/CareerImg.jpg";
+import { Link } from "react-router-dom";
 
 const HomeCareer = () => {
   return (
@@ -61,10 +62,10 @@ const HomeCareer = () => {
           transition={{ delay: 0.3 }}
           className="mt-8 max-w-3xl text-lg leading-relaxed text-slate-300"
         >
-          Join a team that values your hard work, safety, and growth.
-          With competitive pay, modern equipment, and comprehensive
-          benefits, Toronto Coast Trucking is where professional drivers
-          build rewarding and lasting careers.
+          Join a team that values your hard work, safety, and growth. With
+          competitive pay, modern equipment, and comprehensive benefits, Toronto
+          Coast Trucking is where professional drivers build rewarding and
+          lasting careers.
         </motion.p>
 
         {/* Benefits */}
@@ -93,26 +94,26 @@ const HomeCareer = () => {
         </motion.div>
 
         {/* CTA */}
-        <motion.button
+        <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          whileHover={{
-            scale: 1.05,
-          }}
-          whileTap={{
-            scale: 0.95,
-          }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="group mt-14 flex cursor-pointer items-center gap-3 rounded-full bg-gradient-to-r from-red-600 to-blue-700 px-9 py-4 text-lg font-semibold text-white shadow-2xl"
+          className="mt-14 inline-block"
         >
-          Apply to Drive Today
-
-          <ArrowRight
-            size={20}
-            className="transition-transform duration-300 group-hover:translate-x-1"
-          />
-        </motion.button>
+          <Link
+            to="/career"
+            className="group flex cursor-pointer items-center gap-3 rounded-full bg-gradient-to-r from-red-600 to-blue-700 px-9 py-4 text-lg font-semibold text-white shadow-2xl"
+          >
+            Apply to Drive Today
+            <ArrowRight
+              size={20}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { ArrowRight, Truck } from "lucide-react";
 
 // Replace with your own image
 import CTAImage from "../assets/CareerImg.jpg";
+import { Link } from "react-router-dom";
 
 const GetStarted = () => {
   return (
@@ -70,26 +71,26 @@ const GetStarted = () => {
         </motion.p>
 
         {/* CTA Button */}
-        <motion.button
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          whileHover={{
-            scale: 1.05,
-          }}
-          whileTap={{
-            scale: 0.95,
-          }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           viewport={{ once: true }}
           transition={{ delay: 0.45 }}
-          className="group mt-12 inline-flex cursor-pointer items-center gap-3 rounded-full bg-gradient-to-r from-red-600 to-blue-700 px-9 py-5 text-lg font-semibold text-white shadow-2xl"
+          className="mt-12 inline-block"
         >
-          Contact Us
-
-          <ArrowRight
-            size={20}
-            className="transition-transform duration-300 group-hover:translate-x-1"
-          />
-        </motion.button>
+          <Link
+            to="/contact"
+            className="group inline-flex cursor-pointer items-center gap-3 rounded-full bg-gradient-to-r from-red-600 to-blue-700 px-9 py-5 text-lg font-semibold text-white shadow-2xl"
+          >
+            Contact Us
+            <ArrowRight
+              size={20}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

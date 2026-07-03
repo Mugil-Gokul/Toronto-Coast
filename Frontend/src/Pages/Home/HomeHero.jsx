@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Truck, Clock3, ShieldCheck } from "lucide-react";
 import TCTVideo from "../../assets/TCT-vid.mp4";
+import { Link } from "react-router-dom";
 
 const HomeHero = () => {
   return (
@@ -62,84 +63,22 @@ const HomeHero = () => {
 
               {/* CTA Buttons */}
               <div className="mt-10 flex flex-wrap gap-5">
-                <motion.button
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="group flex items-center gap-3 rounded-full bg-gradient-to-r from-red-600 to-blue-700 px-8 py-4 font-semibold text-white shadow-2xl"
                 >
-                  Get Started
-
+                  <Link to="/services">
+                    Get Started
+                  </Link>
                   <ArrowRight
                     size={20}
                     className="transition-transform duration-300 group-hover:translate-x-1"
                   />
-                </motion.button>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  className="rounded-full border border-white/20 bg-white/10 px-8 py-4 font-semibold text-white backdrop-blur-md"
-                >
-                  Our Services
-                </motion.button>
+                </motion.div>
               </div>
             </motion.div>
           </div>
-
-          {/* Floating Cards */}
-          {/* <div className="hidden items-center justify-end lg:flex">
-            <div className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, x: 80 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-                className="w-80 rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur-xl"
-              >
-                <Truck size={34} className="mb-4 text-red-500" />
-
-                <h3 className="text-xl font-bold text-white">
-                  Full Truckload
-                </h3>
-
-                <p className="mt-2 text-slate-300">
-                  Dedicated freight transportation for large-volume shipments.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 80 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
-                className="ml-14 w-80 rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur-xl"
-              >
-                <Clock3 size={34} className="mb-4 text-blue-500" />
-
-                <h3 className="text-xl font-bold text-white">
-                  On-Time Delivery
-                </h3>
-
-                <p className="mt-2 text-slate-300">
-                  Precision scheduling to keep your supply chain moving.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 80 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8 }}
-                className="w-80 rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur-xl"
-              >
-                <ShieldCheck size={34} className="mb-4 text-green-500" />
-
-                <h3 className="text-xl font-bold text-white">
-                  Secure Transport
-                </h3>
-
-                <p className="mt-2 text-slate-300">
-                  Every shipment handled with care, safety, and accountability.
-                </p>
-              </motion.div>
-            </div>
-          </div> */}
         </div>
       </div>
 

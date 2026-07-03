@@ -132,7 +132,7 @@ const HomeTestimonials = () => {
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -156,7 +156,7 @@ const HomeTestimonials = () => {
           >
             Become Our Next Success Story
           </motion.button>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );
